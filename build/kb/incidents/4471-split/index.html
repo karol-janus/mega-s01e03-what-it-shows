@@ -5,11 +5,11 @@
 		<link href="../../../_app/immutable/chunks/CptVIHXj.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/CHfFqfNT.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DQG8lHS1.js" rel="modulepreload">
-		<link href="../../../_app/immutable/entry/app.CNuWFYVa.js" rel="modulepreload">
+		<link href="../../../_app/immutable/entry/app.CvijCm6s.js" rel="modulepreload">
 		<link href="../../../_app/immutable/nodes/0.CTf4XHXr.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
-		<link href="../../../_app/immutable/nodes/6.BXz7--qU.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/B7i0NCRw.js" rel="modulepreload">
+		<link href="../../../_app/immutable/nodes/6.u1KK9f9j.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/hjDsRn1x.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DkoUumqI.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DRJI5kHv.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BXWM2-hM.js" rel="modulepreload">
@@ -19,9 +19,13 @@
 		<link href="../../../_app/immutable/assets/runbook.COyw0cbZ.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/QueueTimeline.D56XP2ro.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/DedupeExplorer.DO6Yid7X.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/RenderStamp.WePi3wDe.css" rel="stylesheet"></head><body data-sveltekit-preload-data="hover"><div style="display: contents"><!--[--><!--[--><!--[0--><!--[--><!--[--><!--[-1--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · two causes behind the wrong dates</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Karol Janus and Codex</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-10-31 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p>The desk marked #4471 as one known parser bug. The rendered table below shows two causes.
+		<link href="../../../_app/immutable/assets/RenderStamp.WePi3wDe.css" rel="stylesheet"></head><body data-sveltekit-preload-data="hover"><div style="display: contents"><!--[--><!--[--><!--[0--><!--[--><!--[--><!--[-1--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · two causes behind the wrong dates</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Karol Janus and Codex</b></span> <span class="status resolved svelte-e2jw2j">resolved</span> <span class="svelte-e2jw2j">reviewed 2026-10-31 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p>The desk marked #4471 as one known parser bug. The rendered table below shows two causes.
 Split their engineering work and preserve the original reports. This page supersedes the <a href="/kb/incidents/4471">one-issue diagnosis</a>, using the export dated 4 October 2026.
-It does not establish the state of the live queue after that export.</p> <h2>Count reports once, then classify by cause</h2> <p class="sum svelte-12oyimm"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p> <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><!--[--><tr class="svelte-12oyimm"><td class="svelte-12oyimm"><code>parser</code></td><td class="svelte-12oyimm">379</td><td class="tags svelte-12oyimm">parser ×356 · hint ×23</td><td class="svelte-12oyimm">11</td><td class="svelte-12oyimm">2026-04-01 → 2026-10-04</td><td class="svelte-12oyimm">#4471</td></tr><tr class="svelte-12oyimm wrong"><td class="svelte-12oyimm"><code>hint</code></td><td class="svelte-12oyimm">33</td><td class="tags svelte-12oyimm">hint ×18 · parser ×15</td><td class="svelte-12oyimm">3</td><td class="svelte-12oyimm">2026-04-17 → 2026-09-22</td><td class="svelte-12oyimm">not this ticket — no ticket of its own</td></tr><!--]--></tbody></table> <!--[--><!--[0--><p class="note svelte-12oyimm">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p><!--]--><!--[-1--><!--]--><!--]--><!----> <p>427 export rows − 15 repeated IDs = 412 unique reports.
+It does not establish the state of the live queue after that export.</p> <h2>Engineering outcome: closed 5 October 2026</h2> <p>The <a href="https://hq.mega.dev/challenges/what-it-shows" rel="nofollow">course desk update</a>, checked 31 October,
+reports #4471 closed on 5 October. The parser was <strong>fixed</strong>: <code>fix(dates): parse dd/mm for eu locales</code>.
+The hint was <strong>won’t fix</strong> because the booking-v3 form was retired. These are different outcomes;
+retiring the form does not mean its hint was corrected.</p> <p>Our <a href="https://github.com/karol-janus/mega-s01e03-what-it-shows/issues/1" rel="nofollow">parser ticket</a> is closed as completed. Our <a href="https://github.com/karol-janus/mega-s01e03-what-it-shows/issues/2" rel="nofollow">hint ticket</a> is closed as not planned. The original export and its historical counts stay unchanged.
+The table’s “no ticket of its own” describes that export, before we created these two tickets.</p> <h2>Count reports once, then classify by cause</h2> <p class="sum svelte-12oyimm"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p> <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><!--[--><tr class="svelte-12oyimm"><td class="svelte-12oyimm"><code>parser</code></td><td class="svelte-12oyimm">379</td><td class="tags svelte-12oyimm">parser ×356 · hint ×23</td><td class="svelte-12oyimm">11</td><td class="svelte-12oyimm">2026-04-01 → 2026-10-04</td><td class="svelte-12oyimm">#4471</td></tr><tr class="svelte-12oyimm wrong"><td class="svelte-12oyimm"><code>hint</code></td><td class="svelte-12oyimm">33</td><td class="tags svelte-12oyimm">hint ×18 · parser ×15</td><td class="svelte-12oyimm">3</td><td class="svelte-12oyimm">2026-04-17 → 2026-09-22</td><td class="svelte-12oyimm">not this ticket — no ticket of its own</td></tr><!--]--></tbody></table> <!--[--><!--[0--><p class="note svelte-12oyimm">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p><!--]--><!--[-1--><!--]--><!--]--><!----> <p>427 export rows − 15 repeated IDs = 412 unique reports.
 183 reports arrived before 2 July; 184 were merged that day.</p> <details><summary>Reports needing closer investigation (5)</summary> <ul><!--[--><li><code>R-41202</code> · kettle.books · email: Invite says Tuesday 12 May. Calendar says Monday 11 May. My client turned up on the Monday. We had coffee.</li><li><code>R-41209</code> · alder.physio · app: Every booking in June is one day off. Only June. Why only June.</li><li><code>R-41236</code> · nine.lanterns · app: The invite arrived before I made the booking. I would like to know how.</li><li><code>R-41344</code> · pale.harbour · email: Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice.</li><li><code>R-41620</code> · lantern.row · email: Tuesday 6 October showed as Monday. I moved it myself. I have stopped reporting these but my colleague says it helps you.</li><!--]--></ul></details><!----> <p>Use the report’s tenant directory entry, its locale and booking form, and its channel. <code>Intl.DateTimeFormat(...).formatToParts</code> determines date order; the browser locale and
 intake tag are guesses, not the classification. <code>uniqueById</code> removes overlapping export pages
 before filtering for #4471. The two cause counts partition that deduplicated set.</p> <h3>Parser: the shared parser reads month first</h3> <p>Day-first tenants sending dates through the app or email, and through booking-v2 forms,
@@ -44,22 +48,23 @@ the accepted historical record is preserved.</p> <h2>Limits and next desk action
 export’s running classifier files them under parser using tenant and channel, so they remain
 inside that count, with this caveat. Their bodies do not prove a third cause or a timezone fix.
 Investigate raw booking input, tenant configuration, parsed date and timezone before reclassifying;
-update both issue memberships and counts together if stronger evidence changes the diagnosis.</p> <p>File one engineering ticket per cause, keep report IDs attached to each, and direct new reports
-by cause while work continues. Confirm outcomes with the reporters instead of closing on a label.
-Refresh the export before claiming a current queue total or a successful fix.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-VHF5-QS10</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!--]--><!--]--><!----><!--]--><!--]--><!--]--><!----> <!--[-1--><!--]--><!--]-->
+update both issue memberships and counts together if stronger evidence changes the diagnosis.</p> <p>The two engineering tickets preserve the report membership and separate closure reasons.
+For future reports, classify by cause, confirm actual input and output with reporters, and
+refresh the export before claiming a current queue total. The engineering update establishes
+the recorded outcomes; this investigation did not independently test the production fix.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-VHF5-QS10</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!--]--><!--]--><!----><!--]--><!--]--><!--]--><!----> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1bdwla5 = {
+					__sveltekit_1q98pbm = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
-						version: "1793456670763"
+						version: "1793458260006"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../../_app/immutable/entry/start.D1HzdfF7.js").then(async (kit) => {
-						kit.init(__sveltekit_1bdwla5);
-						const app = await import("../../../_app/immutable/entry/app.CNuWFYVa.js");
+						kit.init(__sveltekit_1q98pbm);
+						const app = await import("../../../_app/immutable/entry/app.CvijCm6s.js");
 						kit.start(app, element, {
 							node_ids: [0, 6],
 							data: [null,null],

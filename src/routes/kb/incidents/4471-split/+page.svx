@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two causes behind the wrong dates'
 owner: Karol Janus and Codex
-status: proposed
+status: resolved
 reviewed: 2026-10-31
 signature: 'Karol Janus / Codex / S01E03 / 2026-10-31'
 ---
@@ -19,6 +19,18 @@ The desk marked #4471 as one known parser bug. The rendered table below shows tw
 Split their engineering work and preserve the original reports. This page supersedes the
 [one-issue diagnosis](/kb/incidents/4471), using the export dated 4 October 2026.
 It does not establish the state of the live queue after that export.
+
+## Engineering outcome: closed 5 October 2026
+
+The [course desk update](https://hq.mega.dev/challenges/what-it-shows), checked 31 October,
+reports #4471 closed on 5 October. The parser was **fixed**: `fix(dates): parse dd/mm for eu locales`.
+The hint was **won't fix** because the booking-v3 form was retired. These are different outcomes;
+retiring the form does not mean its hint was corrected.
+
+Our [parser ticket](https://github.com/karol-janus/mega-s01e03-what-it-shows/issues/1)
+is closed as completed. Our [hint ticket](https://github.com/karol-janus/mega-s01e03-what-it-shows/issues/2)
+is closed as not planned. The original export and its historical counts stay unchanged.
+The table's “no ticket of its own” describes that export, before we created these two tickets.
 
 ## Count reports once, then classify by cause
 
@@ -77,8 +89,9 @@ inside that count, with this caveat. Their bodies do not prove a third cause or 
 Investigate raw booking input, tenant configuration, parsed date and timezone before reclassifying;
 update both issue memberships and counts together if stronger evidence changes the diagnosis.
 
-File one engineering ticket per cause, keep report IDs attached to each, and direct new reports
-by cause while work continues. Confirm outcomes with the reporters instead of closing on a label.
-Refresh the export before claiming a current queue total or a successful fix.
+The two engineering tickets preserve the report membership and separate closure reasons.
+For future reports, classify by cause, confirm actual input and output with reporters, and
+refresh the export before claiming a current queue total. The engineering update establishes
+the recorded outcomes; this investigation did not independently test the production fix.
 
 <RenderStamp {signature} />
