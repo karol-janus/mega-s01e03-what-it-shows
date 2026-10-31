@@ -1,0 +1,38 @@
+---
+layout: runbook
+title: '0002 · Match causes before merging reports'
+owner: Karol Janus and Codex
+status: proposed
+reviewed: 2026-10-31
+signature: 'Karol Janus / Codex / S01E03 / 2026-10-31'
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Proposed replacement for:** [accepted decision 0001](/kb/decisions/0001-dedupe-by-subject).
+That accepted record remains unchanged; this proposal needs the support desk's acceptance.
+
+## Context
+
+[The #4471 investigation](/kb/incidents/4471-split) shows that subject matching hid a separate
+form-hint bug in a parser ticket. Intake tags also disagree with tenant-aware classification.
+
+## Decision proposed
+
+Read the body, resolve the tenant, determine date order and form, then classify using
+`causeOf`. Merge only when `sameCause` is true. Subject matching can find candidate tickets,
+but cannot authorize a merge. Unknown tenants and unexplained symptoms stay unmerged for
+investigation. Count each report ID once and keep membership auditable.
+
+## Consequences
+
+Triage requires more context than a subject comparison. Different subjects can share one cause;
+the same subject can require separate tickets. Fixing the parser and fixing the form hint are
+separate engineering tasks. Recheck uncertain reports against actual input and output.
+
+<DedupeExplorer />
+
+<RenderStamp {signature} />

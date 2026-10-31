@@ -1,0 +1,19 @@
+{
+  "name": "mega-s01e03-support-kb",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "verify": "node evidence/verify.mjs"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "latest",
+    "@sveltejs/adapter-static": "latest",
+    "@sveltejs/vite-plugin-svelte": "latest",
+    "svelte": "latest",
+    "vite": "latest",
+    "mdsvex": "latest"
+  }
+}

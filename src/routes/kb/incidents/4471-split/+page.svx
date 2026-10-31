@@ -1,0 +1,84 @@
+---
+layout: runbook
+title: '#4471 · two causes behind the wrong dates'
+owner: Karol Janus and Codex
+status: proposed
+reviewed: 2026-10-31
+signature: 'Karol Janus / Codex / S01E03 / 2026-10-31'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Evidence from '#lib/kb/Evidence.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+The desk marked #4471 as one known parser bug. The rendered table below shows two causes.
+Split their engineering work and preserve the original reports. This page supersedes the
+[one-issue diagnosis](/kb/incidents/4471), using the export dated 4 October 2026.
+It does not establish the state of the live queue after that export.
+
+## Count reports once, then classify by cause
+
+<CauseTable ticket={4471} />
+
+<Evidence />
+
+Use the report's tenant directory entry, its locale and booking form, and its channel.
+`Intl.DateTimeFormat(...).formatToParts` determines date order; the browser locale and
+intake tag are guesses, not the classification. `uniqueById` removes overlapping export pages
+before filtering for #4471. The two cause counts partition that deduplicated set.
+
+### Parser: the shared parser reads month first
+
+Day-first tenants sending dates through the app or email, and through booking-v2 forms,
+hit the shared month-first parser. A booking for 7 April becomes 4 July. See R-41200
+(harbour.dental, app). Correct the parser to use the tenant's date order and test ambiguous
+day/month inputs, unambiguous dates, and month-first tenants as controls.
+
+### Hint: booking-v3 advertises the wrong order
+
+For day-first tenants, booking-v3 prints `MM/DD/YYYY`, although its form reads the input in
+the tenant's day-first order. People follow the hint and their dates flip. See R-41230
+(copper.studio, form). Fix the hint to match the form's actual locale-aware interpretation;
+changing the shared parser alone does not fix this path. Test alder.physio, copper.studio and
+pale.harbour with the form, then confirm their app/email paths still belong to the parser issue.
+
+## Reports arriving and reports being merged are different events
+
+<QueueTimeline ticket={4471} />
+
+The received series starts in April. The large July merge bar records desk processing of an
+existing backlog; it is not a July outbreak. Reports keep arriving after that merge and through
+October. A known label and a queued fix do not show that the incident stopped.
+
+## What the prose missed
+
+The old triage page and accepted decision 0001 say to merge by subject. Their review dates
+are from 2024; the layout marks them stale after 180 days. The running explorer tests causes,
+so its results contradict that prose. Same words can describe different bugs; different words
+can describe the same bug. Re-reading a page recently does not make its diagnosis correct:
+#4471's reviewed date is recent, but its rendered evidence still contradicts its one-fix claim.
+
+<DedupeExplorer />
+
+A known tenant's locale, form and channel must support the same cause before merging.
+Unknown tenants need investigation, even if their subjects match. Do not turn an unknown cause
+into a duplicate. [Decision 0002](/kb/decisions/0002-dedupe-by-cause) proposes replacing 0001;
+the accepted historical record is preserved.
+
+## Limits and next desk actions
+
+The five reports listed in desk-notes describe one-day moves or other unusual timing. The
+export's running classifier files them under parser using tenant and channel, so they remain
+inside that count, with this caveat. Their bodies do not prove a third cause or a timezone fix.
+Investigate raw booking input, tenant configuration, parsed date and timezone before reclassifying;
+update both issue memberships and counts together if stronger evidence changes the diagnosis.
+
+File one engineering ticket per cause, keep report IDs attached to each, and direct new reports
+by cause while work continues. Confirm outcomes with the reporters instead of closing on a label.
+Refresh the export before claiming a current queue total or a successful fix.
+
+<RenderStamp {signature} />

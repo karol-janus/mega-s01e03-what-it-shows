@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import { uniqueById, groupByCause, sameCause } from '../src/lib/kb/causes.ts';
+import { deskRef } from '../src/lib/kb/desk-ref.ts';
+const raw = JSON.parse(fs.readFileSync('src/lib/data/reports-4471.json'));
+const tenants = new Map(fs.readdirSync('src/lib/data/tenants').map(f => {
+  const t = JSON.parse(fs.readFileSync('src/lib/data/tenants/' + f));
+  return [t.handle, t];
+}));
+const reports = uniqueById(raw).filter(r => r.mergedInto === 4471);
+const groups = groupByCause(reports, r => tenants.get(r.tenant));
+assert.equal(raw.length, 427);
+assert.equal(reports.length, 412);
+assert.deepEqual(Object.fromEntries(groups.map(g => [g.cause, g.reports.length])), { parser: 379, hint: 33 });
+const saved = JSON.parse(fs.readFileSync('evidence/report-membership.json'));
+for (const g of groups) assert.deepEqual(saved.find(s => s.cause === g.cause).reportIds, g.reports.map(r => r.id));
+assert.equal(new Set(groups.flatMap(g => g.reports.map(r => r.id))).size, 412);
+assert.equal(groups.reduce((n, g) => n + g.reports.length, 0), 412);
+assert.equal(sameCause({ channel: 'email' }, undefined, { channel: 'email' }, undefined), false);
+const html = fs.readFileSync('build/kb/incidents/4471-split/index.html', 'utf8');
+assert(html.includes(deskRef('Karol Janus / Codex / S01E03 / 2026-10-31')));
+assert(html.includes('>379<') && html.includes('>33<'));
+assert(!html.includes('no desk ref:'));
+console.log('Verified: report counts, disjoint membership, unknown-tenant handling and generated HTML signature.');

@@ -1,0 +1,28 @@
+import{t as e}from"./DK3Fl9T5.js";import{E as t,F as n,I as r,L as i,N as a,R as o,S as s,U as c,W as l,h as u,i as d,k as f,q as p,r as m,t as h,w as g}from"./CHfFqfNT.js";import{t as _}from"./DkoUumqI.js";import{i as v,n as y,r as b,t as x}from"./DRJI5kHv.js";import{t as S}from"./BxJynscm.js";import{c as C}from"./BXWM2-hM.js";import{t as w}from"./499x6edU.js";var T=t(`<li><code> </code> </li>`),E=t(`<p> </p> <details><summary> </summary> <ul></ul></details>`,1);function D(e,t){l(t,!1);let m=C(v).filter(e=>e.mergedInto===4471),h=v.length-C(v).length,_=m.filter(e=>e.receivedAt.slice(0,10)<`2026-07-02`).length,y=m.filter(e=>e.mergedAt?.startsWith(`2026-07-02`)).length,x=m.filter(e=>b.oneDayMove.includes(e.id));d();var S=E(),w=r(S),D=i(w),O=o(w,2),k=n(O),A=i(k),j=o(k,2);u(j,5,()=>x,e=>e.id,(e,t)=>{var r=T(),c=n(r),l=i(c,!0),u=o(c);p(r),a(()=>{s(l,f(t).id),s(u,` · ${f(t).tenant??``} · ${f(t).channel??``}: ${f(t).body??``}`)}),g(e,r)}),p(j),p(O),a(()=>{s(D,`${v.length??``} export rows − ${h} repeated IDs = ${m.length??``} unique reports.
+${_??``} reports arrived before 2 July; ${y??``} were merged that day.`),s(A,`Reports needing closer investigation (${x.length??``})`)}),g(e,S),c()}var O=e({default:()=>L,metadata:()=>k}),k={layout:`runbook`,title:`#4471 · two causes behind the wrong dates`,owner:`Karol Janus and Codex`,status:`proposed`,reviewed:`2026-10-31T00:00:00.000Z`,signature:`Karol Janus / Codex / S01E03 / 2026-10-31`},{layout:A,title:j,owner:M,status:N,reviewed:P,signature:F}=k,I=t(`<p>The desk marked #4471 as one known parser bug. The rendered table below shows two causes.
+Split their engineering work and preserve the original reports. This page supersedes the <a href="/kb/incidents/4471">one-issue diagnosis</a>, using the export dated 4 October 2026.
+It does not establish the state of the live queue after that export.</p> <h2>Count reports once, then classify by cause</h2> <!> <!> <p>Use the report’s tenant directory entry, its locale and booking form, and its channel. <code>Intl.DateTimeFormat(...).formatToParts</code> determines date order; the browser locale and
+intake tag are guesses, not the classification. <code>uniqueById</code> removes overlapping export pages
+before filtering for #4471. The two cause counts partition that deduplicated set.</p> <h3>Parser: the shared parser reads month first</h3> <p>Day-first tenants sending dates through the app or email, and through booking-v2 forms,
+hit the shared month-first parser. A booking for 7 April becomes 4 July. See R-41200
+(harbour.dental, app). Correct the parser to use the tenant’s date order and test ambiguous
+day/month inputs, unambiguous dates, and month-first tenants as controls.</p> <h3>Hint: booking-v3 advertises the wrong order</h3> <p>For day-first tenants, booking-v3 prints <code>MM/DD/YYYY</code>, although its form reads the input in
+the tenant’s day-first order. People follow the hint and their dates flip. See R-41230
+(copper.studio, form). Fix the hint to match the form’s actual locale-aware interpretation;
+changing the shared parser alone does not fix this path. Test alder.physio, copper.studio and
+pale.harbour with the form, then confirm their app/email paths still belong to the parser issue.</p> <h2>Reports arriving and reports being merged are different events</h2> <!> <p>The received series starts in April. The large July merge bar records desk processing of an
+existing backlog; it is not a July outbreak. Reports keep arriving after that merge and through
+October. A known label and a queued fix do not show that the incident stopped.</p> <h2>What the prose missed</h2> <p>The old triage page and accepted decision 0001 say to merge by subject. Their review dates
+are from 2024; the layout marks them stale after 180 days. The running explorer tests causes,
+so its results contradict that prose. Same words can describe different bugs; different words
+can describe the same bug. Re-reading a page recently does not make its diagnosis correct:
+#4471’s reviewed date is recent, but its rendered evidence still contradicts its one-fix claim.</p> <!> <p>A known tenant’s locale, form and channel must support the same cause before merging.
+Unknown tenants need investigation, even if their subjects match. Do not turn an unknown cause
+into a duplicate. <a href="/kb/decisions/0002-dedupe-by-cause">Decision 0002</a> proposes replacing 0001;
+the accepted historical record is preserved.</p> <h2>Limits and next desk actions</h2> <p>The five reports listed in desk-notes describe one-day moves or other unusual timing. The
+export’s running classifier files them under parser using tenant and channel, so they remain
+inside that count, with this caveat. Their bodies do not prove a third cause or a timezone fix.
+Investigate raw booking input, tenant configuration, parsed date and timezone before reclassifying;
+update both issue memberships and counts together if stronger evidence changes the diagnosis.</p> <p>File one engineering ticket per cause, keep report IDs attached to each, and direct new reports
+by cause while work continues. Confirm outcomes with the reporters instead of closing on a label.
+Refresh the export before claiming a current queue total or a successful fix.</p> <!>`,1);function L(e,t){let n=h(t,[`children`,`$$slots`,`$$events`,`$$legacy`]);_(e,m(()=>n,()=>k,{children:(e,t)=>{var n=I(),i=o(r(n),4);y(i,{ticket:4471});var a=o(i,2);D(a,{});var s=o(a,14);x(s,{ticket:4471});var c=o(s,8);S(c,{});var l=o(c,10);w(l,{get signature(){return F}}),g(e,n)},$$slots:{default:!0}}))}export{L as n,O as t};
